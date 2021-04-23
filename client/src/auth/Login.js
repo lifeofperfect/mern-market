@@ -32,7 +32,7 @@ const Login = ({history}) => {
                     payload: res.data
                 })
 
-                history.push("/")
+                history.push("/dashboard")
             }
                 
 
