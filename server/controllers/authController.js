@@ -2,6 +2,7 @@
 //     res.status(200).send(`Here is your message ${req.params.message}`)
 // };
 import User from "../models/user";
+const jwt = require("jsonwebtoken")
 
 export const register = async (req, res)=> {
     console.log(req.body)
@@ -36,5 +37,47 @@ export const register = async (req, res)=> {
         return res
             .status(400)
             .send(`Error try again`)
+    }
+}
+
+
+export const login = async (req, res)=> {
+    //console.log(req.body);
+    const {email, password} = req.body;
+
+    try{
+
+        let user = await User.findOne({email}).exec();
+        console.log("User exists", user)
+        if(!user)
+            res.status(400)
+            .send("USER WITH EMAIL   NOT FOUND")
+
+        user.comparePassword(password, (err, match)=> {
+            if(!match || err){
+                return res
+                    .status(400)
+                    .send("Wrong Password")
+            }
+
+            let token  = jwt.sign({_id: user._id}, process.env.JWT_SECRET, {
+                expiresIn: "7d"
+            });
+
+            res.json({
+                token, 
+                user: {
+                    _id: user._id,
+                    name: user.name,
+                    email: user.email,
+                    createdAt: user.createdAt,
+                    updatedAt: user.updatedAt
+                }
+            })
+        })
+
+    }catch(err){
+        console.log("Login error",err)
+        res.status(400).send("Signin failed")
     }
 }

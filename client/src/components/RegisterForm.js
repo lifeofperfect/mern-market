@@ -37,7 +37,7 @@ const RegisterForm = ({handleSubmit, name, setName, email, setEmail, password, s
                 />
             </div>
 
-            <button type="submit" className="btn btn-primary btn-lg">Submit</button>
+            <button disabled={!name || !password || !email} type="submit" className="btn btn-primary btn-lg">Submit</button>
         </form>
         </div>
     )
