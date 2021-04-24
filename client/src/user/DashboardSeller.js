@@ -1,21 +1,22 @@
-
 import React from 'react'
-import DashboardNavs from '../components/DashboardNavs'
+import DashboardNavs from "../components/DashboardNavs"
 
-const Dashboard = () => {
+const DashboardSeller = () => {
     return (
         <div>
             <div className="container-fluid bg-secondary p-5 text-center">
-                <h1>Dashboard</h1>
+                <h1>Dashboard Seller</h1>
             </div>
+
             <div className="container-fluid p-4">
                 <DashboardNavs />
             </div>
+
             <div className="container">
-                <p>Show all the bookings and browse hotels</p>
+                <p>Show all hotel sellers</p>
             </div>
         </div>
     )
 }
 
-export default Dashboard
+export default DashboardSeller

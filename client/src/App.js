@@ -8,6 +8,7 @@ import TopNav from './components/TopNav';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from './user/Dashboard'
+import DashboardSeller from './user/DashboardSeller'
 
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
           <Route exact path="/login" component={Login}/>
           <Route exact path="/register" component={Register} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          <PrivateRoute exact path="/dashboard/seller" component={DashboardSeller} />
       </Switch>
     </BrowserRouter>
   )
